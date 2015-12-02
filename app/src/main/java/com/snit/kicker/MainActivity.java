@@ -1,4 +1,4 @@
-package com.siv.kicker;
+package com.snit.kicker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

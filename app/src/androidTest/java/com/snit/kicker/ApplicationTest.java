@@ -1,4 +1,4 @@
-package com.siv.kicker;
+package com.snit.kicker;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

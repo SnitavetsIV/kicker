@@ -1,4 +1,4 @@
-package com.siv.kicker;
+package com.snit.kicker;
 
 import org.junit.Test;
 
