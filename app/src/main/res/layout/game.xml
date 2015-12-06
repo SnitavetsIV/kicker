@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:weightSum="1"
+        android:background="#c8c8ff"
+        android:layout_weight="0.08"
+        android:textAlignment="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="BLUE ATTACK"
+            android:id="@+id/blueAttackView"
+            android:layout_weight="0.9"
+            android:textAlignment="center"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            android:id="@+id/button5"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/defScoreValue"
+            android:id="@+id/textView8"
+            android:layout_weight="0.1"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:id="@+id/button6"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:weightSum="1"
+        android:background="#c8c8ff"
+        android:layout_weight="0.09"
+        android:textAlignment="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="BLUE DEFENCE"
+            android:id="@+id/blueDefenceView"
+            android:layout_weight="0.9"
+            android:textAlignment="center"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            android:id="@+id/button"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/defScoreValue"
+            android:id="@+id/textView2"
+            android:layout_weight="0.1"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:id="@+id/button2"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:weightSum="1"
+        android:background="#c8c8ff"
+        android:layout_weight="0.09"
+        android:textAlignment="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/teamScore"
+            android:id="@+id/blueScoreTextView"
+            android:layout_weight="0.9"
+            android:textAlignment="center"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            android:id="@+id/blueScoreDelete"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="true"
+            android:onClick="deleteScoreBlue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/defScoreValue"
+            android:id="@+id/blueScoreView"
+            android:layout_weight="0.1"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:id="@+id/blueScoreAdd"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="true"
+            android:onClick="addScoreBlue"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:weightSum="1"
+        android:background="#ffc8c8"
+        android:layout_weight="0.09"
+        android:textAlignment="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="RED ATTACK"
+            android:id="@+id/redAttackView"
+            android:layout_weight="0.9"
+            android:textAlignment="center"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            android:id="@+id/button7"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/defScoreValue"
+            android:id="@+id/textView7"
+            android:layout_weight="0.1"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:id="@+id/button8"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:weightSum="1"
+        android:background="#ffc8c8"
+        android:layout_weight="0.09"
+        android:textAlignment="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="RED DEFENCE"
+            android:id="@+id/redDefenceView"
+            android:layout_weight="0.9"
+            android:textAlignment="center"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            android:id="@+id/button9"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/defScoreValue"
+            android:id="@+id/textView10"
+            android:layout_weight="0.1"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:id="@+id/button10"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:weightSum="1"
+        android:background="#ffc8c8"
+        android:layout_weight="0.09"
+        android:textAlignment="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/teamScore"
+            android:id="@+id/redScoreTextView"
+            android:layout_weight="0.9"
+            android:textAlignment="center"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            android:id="@+id/redScoreDelete"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="true"
+            android:onClick="deleteScoreRed"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/defScoreValue"
+            android:id="@+id/redScoreView"
+            android:layout_weight="0.1"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:id="@+id/redScoreAdd"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            android:layout_gravity="center_vertical"
+            android:enabled="true"
+            android:onClick="addScoreRed"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.13"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:id="@+id/blueTotalAdd"
+            android:layout_weight="0.10"
+            android:layout_marginLeft="20dp"
+            android:onClick="addScoreBlue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/defScoreValue"
+            android:id="@+id/blueTotalView"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:background="#c8c8ff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/totalScore"
+            android:id="@+id/textView3"
+            android:layout_weight="0.8"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/defScoreValue"
+            android:id="@+id/redTotalView"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:background="#ffc8c8" />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:id="@+id/redTotalAdd"
+            android:layout_weight="0.10"
+            android:layout_marginRight="20dp"
+            android:onClick="addScoreRed"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:text="@string/saveGame"
+        android:id="@+id/saveGame"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.08"
+        android:onClick="saveGame"/>
+
+</LinearLayout>
