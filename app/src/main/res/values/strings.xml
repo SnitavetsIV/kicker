@@ -9,4 +9,10 @@
     <string name="stat">STAT</string>
     <string name="totalScore">TOTAL SCORE</string>
     <string name="saveGame">SAVE GAME</string>
+    <string name="blueDefence">Blue Defence</string>
+    <string name="redDefence">Red Defence</string>
+    <string name="blueAttack">Blue Attack</string>
+    <string name="redAttack">Red Attack</string>
+    <string name="cancel">cancel</string>
+    <string name="startGame">Start Game</string>
 </resources>

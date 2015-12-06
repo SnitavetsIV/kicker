@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    tools:context=".NewGameActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#c8c8ff">
+
+        <TextView
+            android:layout_width="126dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/blueAttack"
+            android:id="@+id/textView"
+            android:singleLine="false"
+            android:textColor="#000000"
+            android:width="150dp" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/blueAttackSpin" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#c8c8ff">
+
+        <TextView
+            android:layout_width="126dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/blueDefence"
+            android:id="@+id/textView4"
+            android:singleLine="false"
+            android:textColor="#000000"
+            android:width="150dp" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/blueDefenceSpin" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffc8c8">
+
+        <TextView
+            android:layout_width="126dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/redAttack"
+            android:id="@+id/textView5"
+            android:singleLine="false"
+            android:textColor="#000000"
+            android:width="150dp" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/redAttackSpin" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffc8c8">
+
+        <TextView
+            android:layout_width="126dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/redDefence"
+            android:id="@+id/textView9"
+            android:singleLine="false"
+            android:textColor="#000000"
+            android:width="150dp" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/redDefenceSpin"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.06">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:id="@+id/button3" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/startGame"
+            android:id="@+id/button4"
+            android:onClick="startGame"/>
+    </LinearLayout>
+</LinearLayout>

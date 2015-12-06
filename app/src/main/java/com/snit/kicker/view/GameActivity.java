@@ -18,6 +18,11 @@ import java.util.List;
  */
 public class GameActivity extends AppCompatActivity {
 
+    public static final String EXTRA_BLUE_ATTACK = "EXTRA_BLUE_ATTACK";
+    public static final String EXTRA_BLUE_DEFENCE = "EXTRA_BLUE_DEFENCE";
+    public static final String EXTRA_RED_ATTACK = "EXTRA_RED_ATTACK";
+    public static final String EXTRA_RED_DEFENCE = "EXTRA_RED_DEFENCE";
+
     private DataProvider dataProvider;
     private Game game;
 
