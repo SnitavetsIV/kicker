@@ -13,7 +13,7 @@ import com.snit.kicker.entity.User;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     private static final String DATABASE_NAME = "kicker.db";
 
@@ -48,32 +48,23 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(tableGame);
 
         //Insert test values
-        ContentValues cv = new ContentValues();
-        cv.put(User.NAME, "Петя");
-
-        db.insert(User.TABLE, null, cv);
-
-        ContentValues cv1 = new ContentValues();
-        cv1.put(User.NAME, "Вася");
-
-        db.insert(User.TABLE, null, cv1);
-
-        ContentValues cv2 = new ContentValues();
-        cv2.put(User.NAME, "Коля");
-
-        db.insert(User.TABLE, null, cv2);
-
-        ContentValues cv3 = new ContentValues();
-        cv3.put(User.NAME, "Стас");
-
-        db.insert(User.TABLE, null, cv3);
+        fillDebugData(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + Game.TABLE);
+        //TODO: migrating data
         onCreate(db);
+    }
+
+    private void fillDebugData(SQLiteDatabase db) {
+        for (int i = 0; i < 10; i++) {
+            ContentValues cv = new ContentValues();
+            cv.put(User.NAME, "user" + i);
+            db.insert(User.TABLE, null, cv);
+        }
     }
 
 }
