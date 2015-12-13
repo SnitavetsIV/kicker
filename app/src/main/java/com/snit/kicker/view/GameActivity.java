@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.snit.kicker.R;
-import com.snit.kicker.db.DataProvider;
+import com.snit.kicker.db.DataService;
 import com.snit.kicker.entity.Game;
 import com.snit.kicker.entity.User;
 
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class GameActivity extends AppCompatActivity {
 
-    private DataProvider dataProvider;
+    private DataService dataService;
     private Game game;
 
     @Override
@@ -27,10 +27,10 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(R.layout.game);
 
-        dataProvider = new DataProvider(this);
+        dataService = new DataService(this);
 
         game = new Game();
-        List<User> users = dataProvider.getUsers();
+        List<User> users = dataService.getUsers();
 
         game.setBlueAttack(users.get(0));
         game.setBlueDefence(users.get(1));
@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void saveGame(View view) {
-        dataProvider.saveGame(game);
+        dataService.saveGame(game);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

@@ -1,20 +1,16 @@
 package com.snit.kicker.view;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.snit.kicker.R;
-import com.snit.kicker.db.DataProvider;
+import com.snit.kicker.db.DataService;
 import com.snit.kicker.entity.Game;
 
 import java.util.List;
@@ -24,7 +20,7 @@ import java.util.List;
  */
 public class StatActivity extends AppCompatActivity {
 
-    private DataProvider dataProvider;
+    private DataService dataService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +28,9 @@ public class StatActivity extends AppCompatActivity {
 
         setContentView(R.layout.stat);
 
-        dataProvider = new DataProvider(this);
+        dataService = new DataService(this);
 
-        List<Game> games = dataProvider.getGames();
+        List<Game> games = dataService.getGames();
 
         ViewGroup viewGroup = (ViewGroup) findViewById(R.id.listStat);
 

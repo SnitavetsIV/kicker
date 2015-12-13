@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Ilya Snitavets
  */
-public class DataProvider {
+public class DataService {
 
     private final DBHelper dbHelper;
 
@@ -32,7 +32,7 @@ public class DataProvider {
             " LEFT JOIN " + User.TABLE + " redAttack ON redAttack." + User.ID + "=g." + Game.RED_ATTACK +
             " LEFT JOIN " + User.TABLE + " redDefence ON redDefence." + User.ID + "=g." + Game.RED_DEFENCE;
 
-    public DataProvider(Context context) {
+    public DataService(Context context) {
         dbHelper = new DBHelper(context);
     }
 
