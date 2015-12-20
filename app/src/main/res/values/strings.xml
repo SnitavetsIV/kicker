@@ -9,4 +9,11 @@
     <string name="stat">STAT</string>
     <string name="totalScore">TOTAL SCORE</string>
     <string name="saveGame">SAVE GAME</string>
+
+    <string-array name="screen_array">
+        <item>New Game</item>
+        <item>Add Game</item>
+        <item>Statistic</item>
+    </string-array>
+
 </resources>

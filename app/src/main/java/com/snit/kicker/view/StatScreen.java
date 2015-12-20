@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.snit.kicker.R;
-import com.snit.kicker.db.DataService;
+import com.snit.kicker.db.KickerDataManager;
 import com.snit.kicker.entity.Game;
 
 import java.util.List;
@@ -20,26 +20,26 @@ import java.util.List;
  */
 public class StatScreen extends Fragment {
 
-	private final DataService dataService;
+	private KickerDataManager kickerDataManager;
 
 	public StatScreen() {
-		this.dataService = new DataService(getContext());
 	}
 
-	public StatScreen(DataService ds) {
-		this.dataService = ds;
+	public void setKickerDataManager(KickerDataManager kickerDataManager) {
+		this.kickerDataManager = kickerDataManager;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+		if (kickerDataManager == null) {
+			kickerDataManager = new KickerDataManager(getContext());
+		}
 
+		View rootView = inflater.inflate(R.layout.stat, container, false);
 
-		View rootView = inflater.inflate(R.layout.stat, container,
-				false);
-
-		List<Game> games = dataService.getGames();
+		List<Game> games = kickerDataManager.getGames();
 
 		ViewGroup viewGroup = (ViewGroup) rootView.findViewById(R.id.listStat);
 

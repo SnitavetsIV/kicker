@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Ilya Snitavets
  */
-public class DataService {
+public class KickerDataManager {
 
     private final DBHelper dbHelper;
 
@@ -32,7 +32,7 @@ public class DataService {
             " LEFT JOIN " + User.TABLE + " redAttack ON redAttack." + User.ID + "=g." + Game.RED_ATTACK +
             " LEFT JOIN " + User.TABLE + " redDefence ON redDefence." + User.ID + "=g." + Game.RED_DEFENCE;
 
-    public DataService(Context context) {
+    public KickerDataManager(Context context) {
         dbHelper = new DBHelper(context);
     }
 
