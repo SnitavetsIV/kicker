@@ -80,10 +80,12 @@ public class GameScreen extends Fragment {
     }
 
     private void updateView(View view) {
-        TextView scoreRed = (TextView) view.findViewById(R.id.redScoreView);
-        TextView scoreBlue = (TextView) view.findViewById(R.id.blueScoreView);
-        TextView scoreTotalRed = (TextView) view.findViewById(R.id.redTotalView);
-        TextView scoreTotalBlue = (TextView) view.findViewById(R.id.blueTotalView);
+        View rootView = view.getRootView();
+
+        TextView scoreRed = (TextView) rootView.findViewById(R.id.redScoreView);
+        TextView scoreBlue = (TextView) rootView.findViewById(R.id.blueScoreView);
+        TextView scoreTotalRed = (TextView) rootView.findViewById(R.id.redTotalView);
+        TextView scoreTotalBlue = (TextView) rootView.findViewById(R.id.blueTotalView);
 
         scoreRed.setText(String.valueOf(game.getScoreRed()));
         scoreBlue.setText(String.valueOf(game.getScoreBlue()));

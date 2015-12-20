@@ -1,6 +1,7 @@
 package com.snit.kicker.view;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -58,12 +59,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectItem(int position) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, statScreen).commit();
+        Fragment f = null;
+        switch (position) {
+            case 0:
+                f = gameScreen;
+                break;
+            case 1:
+                f = addGameScreen;
+                break;
+            case 2:
+                f = statScreen;
+                break;
+        }
+        if (f != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, f).commit();
 
-        listView.setItemChecked(position, true);
-        setTitle(kickerTitles[position]);
-        drawerLayout.closeDrawer(listView);
+            listView.setItemChecked(position, true);
+            setTitle(kickerTitles[position]);
+            drawerLayout.closeDrawer(listView);
+        }
     }
 
     @Override
