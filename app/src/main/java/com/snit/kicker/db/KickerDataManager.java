@@ -39,7 +39,6 @@ public class KickerDataManager {
     public List<User> getAllUsers() {
         ArrayList<User> users = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        db.delete(Game.TABLE, null, null);
         Cursor cursor = db.rawQuery(ALL_USERS, null);
         if (cursor.moveToFirst()) {
             do {
