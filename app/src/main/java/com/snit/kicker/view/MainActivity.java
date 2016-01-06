@@ -90,24 +90,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void addScoreBlue(View view) {
-        gameScreen.addScoreBlue(view);
-    }
-
-    public void addScoreRed(View view) {
-        gameScreen.addScoreRed(view);
-    }
-
-    public void deleteScoreBlue(View view) {
-        gameScreen.deleteScoreBlue(view);
-    }
-
-    public void deleteScoreRed(View view) {
-        gameScreen.deleteScoreRed(view);
-    }
-
-    public void saveGame(View view) {
-        gameScreen.saveGame(view);
-    }
-
 }

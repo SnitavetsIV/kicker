@@ -36,9 +36,10 @@ public class KickerDataManager {
         dbHelper = new DBHelper(context);
     }
 
-    public List<User> getUsers() {
+    public List<User> getAllUsers() {
         ArrayList<User> users = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.delete(Game.TABLE, null, null);
         Cursor cursor = db.rawQuery(ALL_USERS, null);
         if (cursor.moveToFirst()) {
             do {
@@ -106,7 +107,10 @@ public class KickerDataManager {
         return games;
     }
 
-    public void saveGame(Game game) {
+    public void insertOrUpdateGame(Game game) {
+        if (game == null) {
+            return;
+        }
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(Game.BLUE_ATTACK, game.getBlueAttack().getId());
@@ -115,7 +119,12 @@ public class KickerDataManager {
         cv.put(Game.RED_DEFENCE, game.getRedDefence().getId());
         cv.put(Game.BLUE_SCORE, game.getScoreBlue());
         cv.put(Game.RED_SCORE, game.getScoreRed());
-        db.insert(Game.TABLE, null, cv);
+        if (game.getId() > 0) {
+            db.update(Game.TABLE, cv, "id = ?", new String[]{String.valueOf(game.getId())});
+        } else {
+            int id = (int) db.insert(Game.TABLE, null, cv);
+            game.setId(id);
+        }
         db.close();
     }
 

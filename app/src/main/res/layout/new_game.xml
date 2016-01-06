@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/redAtackLine"
+        android:id="@+id/redAttackLine"
         android:background="#ffc8c8">
 
         <Spinner
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/redAtackLine"
+        android:layout_below="@+id/redAttackLine"
         android:id="@+id/redDefenceLine"
         android:background="#ffc8c8">
 

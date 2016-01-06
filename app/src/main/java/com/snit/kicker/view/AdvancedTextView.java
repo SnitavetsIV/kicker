@@ -10,10 +10,8 @@ import android.widget.TextView;
  * @author Ilya Snitavets
  */
 public class AdvancedTextView extends TextView {
-    // Максимальное значение шкалы
     private int mMaxValue = 10;
 
-    // Конструкторы
     public AdvancedTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
@@ -26,12 +24,10 @@ public class AdvancedTextView extends TextView {
         super(context);
     }
 
-    // Установка максимального значения
     public void setMaxValue(int maxValue){
         mMaxValue = maxValue;
     }
 
-    // Установка значения
     public synchronized void setValue(int value) {
         this.setText(String.valueOf(value));
 

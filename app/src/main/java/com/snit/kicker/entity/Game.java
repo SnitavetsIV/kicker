@@ -14,7 +14,7 @@ public class Game {
     public static final String BLUE_SCORE = "blueScore";
     public static final String RED_SCORE = "redScore";
 
-    private int id;
+    private int id = -1;
 
     private User blueAttack;
     private User blueDefence;
