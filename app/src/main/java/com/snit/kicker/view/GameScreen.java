@@ -44,6 +44,22 @@ public class GameScreen extends Fragment {
 
         View rootView = inflater.inflate(R.layout.new_game, container, false);
 
+        startNewGame(rootView);
+
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        startNewGame(getView());
+    }
+
+    private void startNewGame(View rootView) {
+        if (rootView == null) {
+            return;
+        }
         game = new Game();
 
         List<User> users = kickerDataManager.getAllUsers();
@@ -56,9 +72,10 @@ public class GameScreen extends Fragment {
 
         createSpinners(rootView, users);
 
-        addListeners(rootView);
+        addButtonsListener(rootView);
+        addSpinnersListener(rootView);
 
-        return rootView;
+        updateTotalView(rootView);
     }
 
     private void createSpinners(View view, List<User> users) {
@@ -71,46 +88,19 @@ public class GameScreen extends Fragment {
                 android.R.layout.simple_spinner_item, 0, users);
 
         blueAttackSpinner.setAdapter(userArrayAdapter);
+        blueAttackSpinner.setSelection(userArrayAdapter.getPosition(game.getBlueAttack()));
+
         blueDefenceSpinner.setAdapter(userArrayAdapter);
+        blueDefenceSpinner.setSelection(userArrayAdapter.getPosition(game.getBlueDefence()));
+
         redAttackSpinner.setAdapter(userArrayAdapter);
+        redAttackSpinner.setSelection(userArrayAdapter.getPosition(game.getRedAttack()));
+
         redDefenceSpinner.setAdapter(userArrayAdapter);
+        redDefenceSpinner.setSelection(userArrayAdapter.getPosition(game.getRedDefence()));
     }
 
-    private void addListeners(View rootView){
-
-        //Buttons listener
-        Button blueTotalMinus = (Button) rootView.findViewById(R.id.blueTotalMinus);
-        Button blueTotalPlus = (Button) rootView.findViewById(R.id.blueTotalPlus);
-        Button redTotalMinus = (Button) rootView.findViewById(R.id.redTotalMinus);
-        Button redTotalPlus = (Button) rootView.findViewById(R.id.redTotalPlus);
-
-        View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()){
-                    case R.id.blueTotalMinus:
-                        GameScreen.this.deleteScoreBlue(view);
-                        break;
-                    case R.id.blueTotalPlus:
-                        GameScreen.this.addScoreBlue(view);
-                        break;
-                    case R.id.redTotalMinus:
-                        GameScreen.this.deleteScoreRed(view);
-                        break;
-                    case R.id.redTotalPlus:
-                        GameScreen.this.addScoreRed(view);
-                        break;
-                }
-                kickerDataManager.insertOrUpdateGame(game);
-            }
-        };
-
-        blueTotalMinus.setOnClickListener(clickListener);
-        blueTotalPlus.setOnClickListener(clickListener);
-        redTotalMinus.setOnClickListener(clickListener);
-        redTotalPlus.setOnClickListener(clickListener);
-
-        //Spinners listener
+    private void addSpinnersListener(View rootView){
         Spinner blueAttackSpinner = (Spinner) rootView.findViewById(R.id.blueAttackSpinner);
         Spinner blueDefenceSpinner = (Spinner) rootView.findViewById(R.id.blueDefenceSpinner);
         Spinner redAttackSpinner = (Spinner) rootView.findViewById(R.id.redAttackSpinner);
@@ -149,6 +139,39 @@ public class GameScreen extends Fragment {
         blueDefenceSpinner.setOnItemSelectedListener(selectedListener);
         redAttackSpinner.setOnItemSelectedListener(selectedListener);
         redDefenceSpinner.setOnItemSelectedListener(selectedListener);
+    }
+
+    private void addButtonsListener(View rootView){
+        Button blueTotalMinus = (Button) rootView.findViewById(R.id.blueTotalMinus);
+        Button blueTotalPlus = (Button) rootView.findViewById(R.id.blueTotalPlus);
+        Button redTotalMinus = (Button) rootView.findViewById(R.id.redTotalMinus);
+        Button redTotalPlus = (Button) rootView.findViewById(R.id.redTotalPlus);
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.blueTotalMinus:
+                        GameScreen.this.deleteScoreBlue(view);
+                        break;
+                    case R.id.blueTotalPlus:
+                        GameScreen.this.addScoreBlue(view);
+                        break;
+                    case R.id.redTotalMinus:
+                        GameScreen.this.deleteScoreRed(view);
+                        break;
+                    case R.id.redTotalPlus:
+                        GameScreen.this.addScoreRed(view);
+                        break;
+                }
+                kickerDataManager.insertOrUpdateGame(game);
+            }
+        };
+
+        blueTotalMinus.setOnClickListener(clickListener);
+        blueTotalPlus.setOnClickListener(clickListener);
+        redTotalMinus.setOnClickListener(clickListener);
+        redTotalPlus.setOnClickListener(clickListener);
     }
 
 

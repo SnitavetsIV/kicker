@@ -35,7 +35,7 @@ public class AdvancedTextView extends TextView {
 
         ClipDrawable barValue = (ClipDrawable) background.getDrawable(1);
 
-        int newClipLevel = value / mMaxValue;
+        int newClipLevel = 10000 * value / mMaxValue;
         barValue.setLevel(newClipLevel);
 
         drawableStateChanged();

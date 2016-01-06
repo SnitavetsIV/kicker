@@ -3,9 +3,9 @@
     <item android:id="@+id/bar_background">
         <shape>
             <corners android:radius="2dp" />
-            <gradient android:startColor="#666666"
-                      android:centerColor="#111111"
-                      android:endColor="#555555"
+            <gradient android:startColor="#ffffff"
+                      android:centerColor="#ffffff"
+                      android:endColor="#ffffff"
                       android:centerY="0.75"
                       android:angle="270" />
         </shape>
@@ -14,9 +14,9 @@
         <clip>
             <shape>
                 <corners android:radius="2dp" />
-                <gradient android:startColor="#cfb73f"
-                          android:centerColor="#635a30"
-                          android:endColor="#918030"
+                <gradient android:startColor="#1aff00"
+                          android:centerColor="#11ff00"
+                          android:endColor="#04ff00"
                           android:centerY="0.75"
                           android:angle="270" />
             </shape>
