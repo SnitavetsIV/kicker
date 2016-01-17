@@ -30,8 +30,7 @@
             android:id="@+id/redAttackMinus"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/redAttackView"
-            android:layout_toLeftOf="@+id/redAttackView"
-            android:enabled="false"/>
+            android:layout_toLeftOf="@+id/redAttackView"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,8 +52,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignBottom="@+id/redAttackMinus"
-            android:layout_alignParentTop="true"
-            android:enabled="false"/>
+            android:layout_alignParentTop="true"/>
 
     </RelativeLayout>
 
@@ -85,8 +83,7 @@
             android:id="@+id/redDefenceMinus"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/redDefenceView"
-            android:layout_toLeftOf="@+id/redDefenceView"
-            android:enabled="false"/>
+            android:layout_toLeftOf="@+id/redDefenceView"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -108,8 +105,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignBottom="@+id/redDefenceMinus"
-            android:layout_alignParentTop="true"
-            android:enabled="false"/>
+            android:layout_alignParentTop="true"/>
 
     </RelativeLayout>
 
@@ -139,8 +135,7 @@
             android:id="@+id/blueAttackMinus"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/blueAttackView"
-            android:layout_toLeftOf="@+id/blueAttackView"
-            android:enabled="false"/>
+            android:layout_toLeftOf="@+id/blueAttackView"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -162,8 +157,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignBottom="@+id/blueAttackMinus"
-            android:layout_alignParentTop="true"
-            android:enabled="false"/>
+            android:layout_alignParentTop="true"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -192,8 +186,7 @@
             android:id="@+id/blueDefenceMinus"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/blueDefenceView"
-            android:layout_toLeftOf="@+id/blueDefenceView"
-            android:enabled="false"/>
+            android:layout_toLeftOf="@+id/blueDefenceView"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -215,8 +208,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignBottom="@+id/blueDefenceMinus"
-            android:layout_alignParentTop="true"
-            android:enabled="false"/>
+            android:layout_alignParentTop="true"/>
     </RelativeLayout>
 
     <RelativeLayout

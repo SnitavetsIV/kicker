@@ -9,16 +9,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.snit.kicker.R;
 import com.snit.kicker.db.KickerDataManager;
 import com.snit.kicker.entity.Game;
+import com.snit.kicker.entity.GoalStat;
 import com.snit.kicker.entity.User;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,6 +26,11 @@ public class GameScreen extends Fragment {
 
     private KickerDataManager kickerDataManager;
     private Game game;
+
+    private GoalStat blueDefenceGoalStat;
+    private GoalStat blueAttackGoalStat;
+    private GoalStat redDefenceGoalStat;
+    private GoalStat redAttackGoalStat;
 
     public GameScreen() {
     }
@@ -70,9 +73,16 @@ public class GameScreen extends Fragment {
         game.setRedAttack(users.get(2));
         game.setRedDefence(users.get(3));
 
+        blueAttackGoalStat = new GoalStat(game.getBlueAttack(), game);
+        blueDefenceGoalStat = new GoalStat(game.getBlueDefence(), game);
+        redDefenceGoalStat = new GoalStat(game.getRedDefence(), game);
+        redAttackGoalStat = new GoalStat(game.getRedAttack(), game);
+
         createSpinners(rootView, users);
 
-        addButtonsListener(rootView);
+        addTotalScoreButtonsListener(rootView);
+        addUserScoreButtonsListener(rootView);
+
         addSpinnersListener(rootView);
 
         updateTotalView(rootView);
@@ -100,7 +110,7 @@ public class GameScreen extends Fragment {
         redDefenceSpinner.setSelection(userArrayAdapter.getPosition(game.getRedDefence()));
     }
 
-    private void addSpinnersListener(View rootView){
+    private void addSpinnersListener(final View rootView){
         Spinner blueAttackSpinner = (Spinner) rootView.findViewById(R.id.blueAttackSpinner);
         Spinner blueDefenceSpinner = (Spinner) rootView.findViewById(R.id.blueDefenceSpinner);
         Spinner redAttackSpinner = (Spinner) rootView.findViewById(R.id.redAttackSpinner);
@@ -112,20 +122,50 @@ public class GameScreen extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Spinner spinner = (Spinner) parent;
                 User selectedUser = (User) parent.getSelectedItem();
+                GoalStat goalStat;
                 switch (spinner.getId()) {
                     case R.id.blueAttackSpinner:
+                        kickerDataManager.insertOrUpdateGoalStat(blueAttackGoalStat);
                         game.setBlueAttack(selectedUser);
+                        goalStat = kickerDataManager.findGoalStat(selectedUser, game);
+                        if (goalStat == null) {
+                            blueAttackGoalStat = new GoalStat(selectedUser, game);
+                        } else {
+                            blueAttackGoalStat = goalStat;
+                        }
                         break;
                     case R.id.blueDefenceSpinner:
+                        kickerDataManager.insertOrUpdateGoalStat(blueDefenceGoalStat);
                         game.setBlueDefence(selectedUser);
+                        goalStat = kickerDataManager.findGoalStat(selectedUser, game);
+                        if (goalStat == null) {
+                            blueDefenceGoalStat = new GoalStat(selectedUser, game);
+                        } else {
+                            blueDefenceGoalStat = goalStat;
+                        }
                         break;
                     case R.id.redAttackSpinner:
+                        kickerDataManager.insertOrUpdateGoalStat(redAttackGoalStat);
                         game.setRedAttack(selectedUser);
+                        goalStat = kickerDataManager.findGoalStat(selectedUser, game);
+                        if (goalStat == null) {
+                            redAttackGoalStat = new GoalStat(selectedUser, game);
+                        } else {
+                            redAttackGoalStat = goalStat;
+                        }
                         break;
                     case R.id.redDefenceSpinner:
+                        kickerDataManager.insertOrUpdateGoalStat(redDefenceGoalStat);
                         game.setRedDefence(selectedUser);
+                        goalStat = kickerDataManager.findGoalStat(selectedUser, game);
+                        if (goalStat == null) {
+                            redDefenceGoalStat = new GoalStat(selectedUser, game);
+                        } else {
+                            redDefenceGoalStat = goalStat;
+                        }
                         break;
                 }
+                updateTotalView(view);
                 kickerDataManager.insertOrUpdateGame(game);
             }
 
@@ -141,7 +181,71 @@ public class GameScreen extends Fragment {
         redDefenceSpinner.setOnItemSelectedListener(selectedListener);
     }
 
-    private void addButtonsListener(View rootView){
+    private void addUserScoreButtonsListener(final View rootView) {
+        Button blueDefenceMinus = (Button) rootView.findViewById(R.id.blueDefenceMinus);
+        Button blueDefencePlus = (Button) rootView.findViewById(R.id.blueDefencePlus);
+        Button redDefenceMinus = (Button) rootView.findViewById(R.id.redDefenceMinus);
+        Button redDefencePlus = (Button) rootView.findViewById(R.id.redDefencePlus);
+        Button blueAttackMinus = (Button) rootView.findViewById(R.id.blueAttackMinus);
+        Button blueAttackPlus = (Button) rootView.findViewById(R.id.blueAttackPlus);
+        Button redAttackMinus = (Button) rootView.findViewById(R.id.redAttackMinus);
+        Button redAttackPlus = (Button) rootView.findViewById(R.id.redAttackPlus);
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GoalStat goalStat = null;
+                switch (view.getId()) {
+                    case R.id.blueDefenceMinus:
+                        blueDefenceGoalStat.minusScore();
+                        goalStat = blueDefenceGoalStat;
+                        break;
+                    case R.id.blueDefencePlus:
+                        blueDefenceGoalStat.plusScore();
+                        goalStat = blueDefenceGoalStat;
+                        break;
+                    case R.id.redDefenceMinus:
+                        redDefenceGoalStat.minusScore();
+                        goalStat = redDefenceGoalStat;
+                        break;
+                    case R.id.redDefencePlus:
+                        redDefenceGoalStat.plusScore();
+                        goalStat = redDefenceGoalStat;
+                        break;
+                    case R.id.blueAttackMinus:
+                        blueAttackGoalStat.minusScore();
+                        goalStat = blueAttackGoalStat;
+                        break;
+                    case R.id.blueAttackPlus:
+                        blueAttackGoalStat.plusScore();
+                        goalStat = blueAttackGoalStat;
+                        break;
+                    case R.id.redAttackMinus:
+                        redAttackGoalStat.minusScore();
+                        goalStat = redAttackGoalStat;
+                        break;
+                    case R.id.redAttackPlus:
+                        redAttackGoalStat.plusScore();
+                        goalStat = redAttackGoalStat;
+                        break;
+                }
+                kickerDataManager.insertOrUpdateGoalStat(goalStat);
+                kickerDataManager.insertOrUpdateGame(game);
+                updateTotalView(view);
+            }
+        };
+
+        blueDefenceMinus.setOnClickListener(clickListener);
+        blueDefencePlus.setOnClickListener(clickListener);
+        redDefenceMinus.setOnClickListener(clickListener);
+        redDefencePlus.setOnClickListener(clickListener);
+        blueAttackMinus.setOnClickListener(clickListener);
+        blueAttackPlus.setOnClickListener(clickListener);
+        redAttackMinus.setOnClickListener(clickListener);
+        redAttackPlus.setOnClickListener(clickListener);
+    }
+
+    private void addTotalScoreButtonsListener(final View rootView){
         Button blueTotalMinus = (Button) rootView.findViewById(R.id.blueTotalMinus);
         Button blueTotalPlus = (Button) rootView.findViewById(R.id.blueTotalPlus);
         Button redTotalMinus = (Button) rootView.findViewById(R.id.redTotalMinus);
@@ -152,18 +256,19 @@ public class GameScreen extends Fragment {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.blueTotalMinus:
-                        GameScreen.this.deleteScoreBlue(view);
+                        game.deleteScoreBlue();
                         break;
                     case R.id.blueTotalPlus:
-                        GameScreen.this.addScoreBlue(view);
+                        game.addScoreBlue();
                         break;
                     case R.id.redTotalMinus:
-                        GameScreen.this.deleteScoreRed(view);
+                        game.deleteScoreRed();
                         break;
                     case R.id.redTotalPlus:
-                        GameScreen.this.addScoreRed(view);
+                        game.addScoreRed();
                         break;
                 }
+                updateTotalView(view);
                 kickerDataManager.insertOrUpdateGame(game);
             }
         };
@@ -174,27 +279,6 @@ public class GameScreen extends Fragment {
         redTotalPlus.setOnClickListener(clickListener);
     }
 
-
-    public void addScoreBlue(View view) {
-        game.addScoreBlue();
-        updateTotalView(view);
-    }
-
-    public void addScoreRed(View view) {
-        game.addScoreRed();
-        updateTotalView(view);
-    }
-
-    public void deleteScoreBlue(View view) {
-        game.deleteScoreBlue();
-        updateTotalView(view);
-    }
-
-    public void deleteScoreRed(View view) {
-        game.deleteScoreRed();
-        updateTotalView(view);
-    }
-
     private void updateTotalView(View view) {
         View rootView = view.getRootView();
 
@@ -203,6 +287,17 @@ public class GameScreen extends Fragment {
 
         scoreTotalRed.setValue(game.getScoreRed());
         scoreTotalBlue.setValue(game.getScoreBlue());
+
+        TextView blueAttackView = (TextView) rootView.findViewById(R.id.blueAttackView);
+        TextView redAttackView = (TextView) rootView.findViewById(R.id.redAttackView);
+        TextView redDefenceView = (TextView) rootView.findViewById(R.id.redDefenceView);
+        TextView blueDefenceView = (TextView) rootView.findViewById(R.id.blueDefenceView);
+
+        blueAttackView.setText(blueAttackGoalStat.getScore());
+        redAttackView.setText(redAttackGoalStat.getScore());
+        redDefenceView.setText(redDefenceGoalStat.getScore());
+        blueDefenceView.setText(blueDefenceGoalStat.getScore());
+
     }
 	
 }

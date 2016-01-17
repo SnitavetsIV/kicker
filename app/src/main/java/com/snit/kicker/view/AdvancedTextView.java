@@ -10,7 +10,7 @@ import android.widget.TextView;
  * @author Ilya Snitavets
  */
 public class AdvancedTextView extends TextView {
-    private int mMaxValue = 10;
+    private final int MAX_VALUE = 10;
 
     public AdvancedTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -24,10 +24,6 @@ public class AdvancedTextView extends TextView {
         super(context);
     }
 
-    public void setMaxValue(int maxValue){
-        mMaxValue = maxValue;
-    }
-
     public synchronized void setValue(int value) {
         this.setText(String.valueOf(value));
 
@@ -35,7 +31,7 @@ public class AdvancedTextView extends TextView {
 
         ClipDrawable barValue = (ClipDrawable) background.getDrawable(1);
 
-        int newClipLevel = 10000 * value / mMaxValue;
+        int newClipLevel = 10000 * value / MAX_VALUE;
         barValue.setLevel(newClipLevel);
 
         drawableStateChanged();

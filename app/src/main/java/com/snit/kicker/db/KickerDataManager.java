@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.snit.kicker.entity.Game;
+import com.snit.kicker.entity.GoalStat;
 import com.snit.kicker.entity.User;
 
 import java.util.ArrayList;
@@ -31,6 +32,13 @@ public class KickerDataManager {
             " LEFT JOIN " + User.TABLE + " blueDefence ON blueDefence." + User.ID + "=g." + Game.BLUE_DEFENCE +
             " LEFT JOIN " + User.TABLE + " redAttack ON redAttack." + User.ID + "=g." + Game.RED_ATTACK +
             " LEFT JOIN " + User.TABLE + " redDefence ON redDefence." + User.ID + "=g." + Game.RED_DEFENCE;
+
+    private static final String GOAL_STAT_BY_USER_GAME = "SELECT TOP 1 " +
+            "gs." + GoalStat.ID + "," +
+            "gs." + GoalStat.USER_SCORE + " FROM " + GoalStat.TABLE + " gs " +
+            "WHERE " + " gs." + GoalStat.USER + " = ? AND gs." + GoalStat.GAME + " = ?";
+
+
 
     public KickerDataManager(Context context) {
         dbHelper = new DBHelper(context);
@@ -125,6 +133,45 @@ public class KickerDataManager {
             game.setId(id);
         }
         db.close();
+    }
+
+    public void insertOrUpdateGoalStat(GoalStat goalStat) {
+        if (goalStat == null) {
+            return;
+        }
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(GoalStat.USER, goalStat.getUser().getId());
+        cv.put(GoalStat.GAME, goalStat.getGame().getId());
+        cv.put(GoalStat.USER_SCORE, goalStat.getScore());
+        if (goalStat.getId() > 0) {
+            db.update(GoalStat.TABLE, cv, "id = ?", new String[]{String.valueOf(goalStat.getId())});
+        } else {
+            int id = (int) db.insert(GoalStat.TABLE, null, cv);
+            goalStat.setId(id);
+        }
+        db.close();
+    }
+
+    public GoalStat findGoalStat(User user, Game game) {
+        if (user == null || game == null) {
+            return null;
+        }
+        GoalStat ret = null;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(GOAL_STAT_BY_USER_GAME,
+                new String[] {String.valueOf(user.getId()), String.valueOf(game.getId())});
+
+        if (cursor.moveToFirst()) {
+            int id = cursor.getInt(0);
+            int score = cursor.getInt(1);
+            ret = new GoalStat(user, game);
+            ret.setScore(score);
+            ret.setId(id);
+        }
+        cursor.close();
+        db.close();
+        return ret;
     }
 
 }

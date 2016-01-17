@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.snit.kicker.entity.Game;
+import com.snit.kicker.entity.GoalStat;
 import com.snit.kicker.entity.User;
 
 /**
@@ -13,7 +14,7 @@ import com.snit.kicker.entity.User;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     private static final String DATABASE_NAME = "kicker.db";
 
@@ -44,6 +45,15 @@ public class DBHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + Game.BLUE_DEFENCE + ") REFERENCES " + User.TABLE + "(" + User.ID + "),"
                 + "FOREIGN KEY(" + Game.RED_ATTACK + ") REFERENCES " + User.TABLE + "(" + User.ID + "),"
                 + "FOREIGN KEY(" + Game.RED_DEFENCE + ") REFERENCES " + User.TABLE + "(" + User.ID + "))";
+
+        //Create table
+        String tableGoalStat = "CREATE TABLE " + GoalStat.TABLE  + "("
+                + GoalStat.ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + GoalStat.GAME + " INTEGER,"
+                + GoalStat.USER + " INTEGER,"
+                + GoalStat.USER_SCORE + " INTEGER,"
+                + "FOREIGN KEY(" + GoalStat.GAME + ") REFERENCES " + Game.TABLE + "(" + Game.ID + "),"
+                + "FOREIGN KEY(" + GoalStat.USER + ") REFERENCES " + User.TABLE + "(" + User.ID + "))";
 
         db.execSQL(tableGame);
 
