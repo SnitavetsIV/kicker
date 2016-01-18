@@ -194,43 +194,33 @@ public class GameScreen extends Fragment {
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GoalStat goalStat = null;
                 switch (view.getId()) {
                     case R.id.blueDefenceMinus:
                         blueDefenceGoalStat.minusScore();
-                        goalStat = blueDefenceGoalStat;
                         break;
                     case R.id.blueDefencePlus:
                         blueDefenceGoalStat.plusScore();
-                        goalStat = blueDefenceGoalStat;
                         break;
                     case R.id.redDefenceMinus:
                         redDefenceGoalStat.minusScore();
-                        goalStat = redDefenceGoalStat;
                         break;
                     case R.id.redDefencePlus:
                         redDefenceGoalStat.plusScore();
-                        goalStat = redDefenceGoalStat;
                         break;
                     case R.id.blueAttackMinus:
                         blueAttackGoalStat.minusScore();
-                        goalStat = blueAttackGoalStat;
                         break;
                     case R.id.blueAttackPlus:
                         blueAttackGoalStat.plusScore();
-                        goalStat = blueAttackGoalStat;
                         break;
                     case R.id.redAttackMinus:
                         redAttackGoalStat.minusScore();
-                        goalStat = redAttackGoalStat;
                         break;
                     case R.id.redAttackPlus:
                         redAttackGoalStat.plusScore();
-                        goalStat = redAttackGoalStat;
                         break;
                 }
-                kickerDataManager.insertOrUpdateGoalStat(goalStat);
-                kickerDataManager.insertOrUpdateGame(game);
+                saveData();
                 updateTotalView(view);
             }
         };
@@ -269,7 +259,7 @@ public class GameScreen extends Fragment {
                         break;
                 }
                 updateTotalView(view);
-                kickerDataManager.insertOrUpdateGame(game);
+                saveData();
             }
         };
 
@@ -277,6 +267,14 @@ public class GameScreen extends Fragment {
         blueTotalPlus.setOnClickListener(clickListener);
         redTotalMinus.setOnClickListener(clickListener);
         redTotalPlus.setOnClickListener(clickListener);
+    }
+
+    private void saveData() {
+        kickerDataManager.insertOrUpdateGame(game);
+        kickerDataManager.insertOrUpdateGoalStat(blueAttackGoalStat);
+        kickerDataManager.insertOrUpdateGoalStat(blueDefenceGoalStat);
+        kickerDataManager.insertOrUpdateGoalStat(redDefenceGoalStat);
+        kickerDataManager.insertOrUpdateGoalStat(redAttackGoalStat);
     }
 
     private void updateTotalView(View view) {

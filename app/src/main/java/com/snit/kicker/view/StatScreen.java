@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.snit.kicker.R;
@@ -40,36 +41,12 @@ public class StatScreen extends Fragment {
 
 		View rootView = inflater.inflate(R.layout.stat, container, false);
 
+		ListView listView = (ListView) rootView.findViewById(R.id.listStat);
+
 		List<Game> games = kickerDataManager.getGames();
+		GameStatAdapter gameStatAdapter = new GameStatAdapter(getContext(), games, kickerDataManager);
 
-		ViewGroup viewGroup = (ViewGroup) rootView.findViewById(R.id.listStat);
-
-		LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-		ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		for (Game game: games) {
-			View view = vi.inflate(R.layout.stat_list_item, viewGroup, false);
-
-			GoalStat blueAttackStat = kickerDataManager.findGoalStat(game.getBlueAttack(), game);
-			GoalStat blueDefenceStat = kickerDataManager.findGoalStat(game.getBlueDefence(), game);
-			GoalStat redAttackStat = kickerDataManager.findGoalStat(game.getRedAttack(), game);
-			GoalStat redDefenceStat = kickerDataManager.findGoalStat(game.getRedDefence(), game);
-
-			TextView teamsView = (TextView) view.findViewById(R.id.teamsView);
-			String teams = game.getBlueAttack().getName() + "(" + blueAttackStat.getScore() + ")" +
-					" + " + game.getBlueDefence().getName() + "(" + blueDefenceStat.getScore() + ")" +
-					" : " + game.getRedAttack().getName() + "(" + redAttackStat.getScore() + ")" +
-					" + " + game.getRedDefence().getName() + "(" + redDefenceStat.getScore() + ")";
-			teamsView.setText(teams);
-			teamsView.setTextColor(Color.BLACK);
-
-			TextView scoreView = (TextView) view.findViewById(R.id.scoreView);
-			String score = game.getScoreBlue() + " : " + game.getScoreRed();
-			scoreView.setText(score);
-			scoreView.setTextColor(Color.BLACK);
-
-			viewGroup.addView(view, params);
-		}
+		listView.setAdapter(gameStatAdapter);
 
 		return rootView;
 	}
