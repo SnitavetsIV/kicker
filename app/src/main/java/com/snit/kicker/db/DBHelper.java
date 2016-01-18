@@ -14,7 +14,7 @@ import com.snit.kicker.entity.User;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     private static final String DATABASE_NAME = "kicker.db";
 
@@ -46,6 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + Game.RED_ATTACK + ") REFERENCES " + User.TABLE + "(" + User.ID + "),"
                 + "FOREIGN KEY(" + Game.RED_DEFENCE + ") REFERENCES " + User.TABLE + "(" + User.ID + "))";
 
+        db.execSQL(tableGame);
+
         //Create table
         String tableGoalStat = "CREATE TABLE " + GoalStat.TABLE  + "("
                 + GoalStat.ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
@@ -55,7 +57,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + GoalStat.GAME + ") REFERENCES " + Game.TABLE + "(" + Game.ID + "),"
                 + "FOREIGN KEY(" + GoalStat.USER + ") REFERENCES " + User.TABLE + "(" + User.ID + "))";
 
-        db.execSQL(tableGame);
+        db.execSQL(tableGoalStat);
 
         //Insert test values
         fillDebugData(db);

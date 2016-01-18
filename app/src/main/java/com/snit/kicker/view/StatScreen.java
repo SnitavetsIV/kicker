@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.snit.kicker.R;
 import com.snit.kicker.db.KickerDataManager;
 import com.snit.kicker.entity.Game;
+import com.snit.kicker.entity.GoalStat;
 
 import java.util.List;
 
@@ -49,9 +50,16 @@ public class StatScreen extends Fragment {
 		for (Game game: games) {
 			View view = vi.inflate(R.layout.stat_list_item, viewGroup, false);
 
+			GoalStat blueAttackStat = kickerDataManager.findGoalStat(game.getBlueAttack(), game);
+			GoalStat blueDefenceStat = kickerDataManager.findGoalStat(game.getBlueDefence(), game);
+			GoalStat redAttackStat = kickerDataManager.findGoalStat(game.getRedAttack(), game);
+			GoalStat redDefenceStat = kickerDataManager.findGoalStat(game.getRedDefence(), game);
+
 			TextView teamsView = (TextView) view.findViewById(R.id.teamsView);
-			String teams = game.getBlueAttack().getName() + " + " + game.getBlueDefence().getName()
-					+ " : " + game.getRedAttack().getName() + " + " + game.getRedDefence().getName();
+			String teams = game.getBlueAttack().getName() + "(" + blueAttackStat.getScore() + ")" +
+					" + " + game.getBlueDefence().getName() + "(" + blueDefenceStat.getScore() + ")" +
+					" : " + game.getRedAttack().getName() + "(" + redAttackStat.getScore() + ")" +
+					" + " + game.getRedDefence().getName() + "(" + redDefenceStat.getScore() + ")";
 			teamsView.setText(teams);
 			teamsView.setTextColor(Color.BLACK);
 

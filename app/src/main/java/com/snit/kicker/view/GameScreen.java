@@ -293,10 +293,10 @@ public class GameScreen extends Fragment {
         TextView redDefenceView = (TextView) rootView.findViewById(R.id.redDefenceView);
         TextView blueDefenceView = (TextView) rootView.findViewById(R.id.blueDefenceView);
 
-        blueAttackView.setText(blueAttackGoalStat.getScore());
-        redAttackView.setText(redAttackGoalStat.getScore());
-        redDefenceView.setText(redDefenceGoalStat.getScore());
-        blueDefenceView.setText(blueDefenceGoalStat.getScore());
+        blueAttackView.setText(String.valueOf(blueAttackGoalStat.getScore()));
+        redAttackView.setText(String.valueOf(redAttackGoalStat.getScore()));
+        redDefenceView.setText(String.valueOf(redDefenceGoalStat.getScore()));
+        blueDefenceView.setText(String.valueOf(blueDefenceGoalStat.getScore()));
 
     }
 	

@@ -33,10 +33,11 @@ public class KickerDataManager {
             " LEFT JOIN " + User.TABLE + " redAttack ON redAttack." + User.ID + "=g." + Game.RED_ATTACK +
             " LEFT JOIN " + User.TABLE + " redDefence ON redDefence." + User.ID + "=g." + Game.RED_DEFENCE;
 
-    private static final String GOAL_STAT_BY_USER_GAME = "SELECT TOP 1 " +
+    private static final String GOAL_STAT_BY_USER_GAME = "SELECT " +
             "gs." + GoalStat.ID + "," +
             "gs." + GoalStat.USER_SCORE + " FROM " + GoalStat.TABLE + " gs " +
-            "WHERE " + " gs." + GoalStat.USER + " = ? AND gs." + GoalStat.GAME + " = ?";
+            "WHERE " + " gs." + GoalStat.USER + " = ? AND gs." + GoalStat.GAME + " = ? " +
+            " LIMIT 1";
 
 
 
