@@ -13,7 +13,6 @@ import com.snit.kicker.db.KickerDataManager;
 import com.snit.kicker.entity.Game;
 import com.snit.kicker.entity.GoalStat;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,10 +57,15 @@ public class GameStatAdapter extends BaseAdapter {
         GoalStat redDefenceStat = kickerDataManager.findGoalStat(game.getRedDefence(), game);
 
         TextView teamsView = (TextView) convertView.findViewById(R.id.teamsView);
-        String teams = game.getBlueAttack().getName() + "(" + blueAttackStat.getScore() + ")" +
-                " + " + game.getBlueDefence().getName() + "(" + blueDefenceStat.getScore() + ")" +
-                " : " + game.getRedAttack().getName() + "(" + redAttackStat.getScore() + ")" +
-                " + " + game.getRedDefence().getName() + "(" + redDefenceStat.getScore() + ")";
+        int blueAttackScore = (blueAttackStat == null)? 0 : blueAttackStat.getScore();
+        int blueDefenceScore = (blueDefenceStat == null)? 0 : blueDefenceStat.getScore();
+        int redAttackScore = (redAttackStat == null)? 0 : redAttackStat.getScore();
+        int redDefenceScore = (redDefenceStat == null)? 0 : redDefenceStat.getScore();
+
+        String teams = game.getBlueAttack().getName() + "(" + blueAttackScore + ")" +
+                " + " + game.getBlueDefence().getName() + "(" + blueDefenceScore + ")" +
+                " : " + game.getRedAttack().getName() + "(" + redAttackScore + ")" +
+                " + " + game.getRedDefence().getName() + "(" + redDefenceScore + ")";
         teamsView.setText(teams);
         teamsView.setTextColor(Color.BLACK);
 

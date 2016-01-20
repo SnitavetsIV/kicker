@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private StatScreen statScreen;
     private GameScreen gameScreen;
     private AddGameScreen addGameScreen;
+    private UserScreen userScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
         gameScreen = new GameScreen();
         gameScreen.setKickerDataManager(kickerDataManager);
 
+        userScreen = new UserScreen();
+        userScreen.setKickerDataManager(kickerDataManager);
+
+        showStartScreen();
+    }
+
+    private void showStartScreen() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, gameScreen).commit();
+
+        listView.setItemChecked(0, true);
+        setTitle(kickerTitles[0]);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -70,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 f = statScreen;
                 break;
+            case 3:
+                f = userScreen;
         }
         if (f != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();

@@ -1,19 +1,15 @@
 package com.snit.kicker.view;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.snit.kicker.R;
 import com.snit.kicker.db.KickerDataManager;
 import com.snit.kicker.entity.Game;
-import com.snit.kicker.entity.GoalStat;
 
 import java.util.List;
 

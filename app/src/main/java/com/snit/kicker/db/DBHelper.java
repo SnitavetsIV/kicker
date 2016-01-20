@@ -14,7 +14,7 @@ import com.snit.kicker.entity.User;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     private static final String DATABASE_NAME = "kicker.db";
 
@@ -28,7 +28,8 @@ public class DBHelper extends SQLiteOpenHelper {
         //Create table User
         String tableUser = "CREATE TABLE " + User.TABLE  + "("
                 + User.ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + User.NAME + " TEXT)";
+                + User.NAME + " TEXT"
+                + User.DELETED + " INTEGER DEFAULT 0)";
 
         db.execSQL(tableUser);
 
@@ -67,6 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + Game.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + GoalStat.TABLE);
         //TODO: migrating data
         onCreate(db);
     }
