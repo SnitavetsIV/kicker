@@ -20,9 +20,6 @@ public class StatScreen extends Fragment {
 
 	private KickerDataManager kickerDataManager;
 
-	public StatScreen() {
-	}
-
 	public void setKickerDataManager(KickerDataManager kickerDataManager) {
 		this.kickerDataManager = kickerDataManager;
 	}
