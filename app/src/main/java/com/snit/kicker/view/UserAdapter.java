@@ -39,6 +39,13 @@ public class UserAdapter extends ArrayAdapter<User> {
         holder.user = items.get(position);
         holder.removePaymentButton = (ImageButton)row.findViewById(R.id.userRemove);
         holder.removePaymentButton.setTag(holder.user);
+        holder.removePaymentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                items.remove((User) v.getTag());
+                notifyDataSetChanged();
+            }
+        });
 
         holder.name = (TextView)row.findViewById(R.id.userName);
 

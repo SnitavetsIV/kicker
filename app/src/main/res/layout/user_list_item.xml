@@ -16,7 +16,6 @@
         android:id="@+id/userRemove"
         android:layout_width="50dp"
         android:layout_height="fill_parent"
-        android:contentDescription=""
-        android:onClick="removeUseryOnClickHandler"
-        android:src="@android:drawable/ic_menu_delete" />
+        android:src="@android:drawable/ic_menu_delete"
+        android:contentDescription="@string/removeButton" />
 </LinearLayout>
