@@ -47,9 +47,12 @@ public class UserAdapter extends ArrayAdapter<User> {
             @Override
             public void onClick(View v) {
                 User user = (User) v.getTag();
-                kickerDataManager.deleteUser(user);
-                items.remove(user);
-                notifyDataSetChanged();
+                if (user != null) {
+                    user.setDeleted(true);
+                    kickerDataManager.insertOrUpdateUser(user);
+                    items.remove(user);
+                    notifyDataSetChanged();
+                }
             }
         });
 

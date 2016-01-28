@@ -12,6 +12,7 @@ public class User {
 
     private int id = -1;
     private String name;
+    private boolean deleted;
 
     public int getId() {
         return id;
@@ -27,6 +28,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override

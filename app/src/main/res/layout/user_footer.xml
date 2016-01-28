@@ -10,6 +10,6 @@
         android:text="@string/newUser"
         android:id="@+id/newUser"
         android:layout_gravity="center_horizontal"
-        android:enabled="true"/>
+        android:focusable="false"/>
 
 </LinearLayout>

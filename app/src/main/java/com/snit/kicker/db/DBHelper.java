@@ -14,7 +14,7 @@ import com.snit.kicker.entity.User;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     private static final String DATABASE_NAME = "kicker.db";
 
@@ -28,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Create table User
         String tableUser = "CREATE TABLE " + User.TABLE  + "("
                 + User.ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + User.NAME + " TEXT"
+                + User.NAME + " TEXT,"
                 + User.DELETED + " INTEGER DEFAULT 0)";
 
         db.execSQL(tableUser);

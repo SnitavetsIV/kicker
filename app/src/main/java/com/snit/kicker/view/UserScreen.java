@@ -41,23 +41,25 @@ public class UserScreen extends Fragment {
 
         View rootView = inflater.inflate(R.layout.user, container, false);
 
-        ListView listView = (ListView) rootView.findViewById(R.id.listUser);
+        final ListView listView = (ListView) rootView.findViewById(R.id.listUser);
 
         List<User> users = kickerDataManager.getAllUsers();
-        UserAdapter userAdapter = new UserAdapter(getContext(), R.layout.user_list_item, users, kickerDataManager);
+        final UserAdapter userAdapter = new UserAdapter(getContext(), R.layout.user_list_item, users, kickerDataManager);
         listView.setAdapter(userAdapter);
 
         View footer = inflater.inflate(R.layout.user_footer, container, false);
 
         Button btnForward = (Button)footer.findViewById(R.id.newUser);
 
+        btnForward.setEnabled(true);
+
         btnForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
 
-                alert.setTitle("Title");
-                alert.setMessage("Message");
+                alert.setTitle("New User");
+                alert.setMessage("Please enter name");
 
                 final EditText input = new EditText(getContext());
                 alert.setView(input);
@@ -69,20 +71,18 @@ public class UserScreen extends Fragment {
                             User user = new User();
                             user.setName(s);
                             kickerDataManager.insertOrUpdateUser(user);
+                            userAdapter.add(user);
+                            userAdapter.notifyDataSetChanged();
                         }
                     }
                 });
 
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        // Canceled.
-                    }
-                });
+                alert.setNegativeButton("Cancel", null);
 
                 alert.show();
             }
         });
-        btnForward.setEnabled(false);
+        btnForward.setEnabled(true);
         listView.addFooterView(footer);
 
 

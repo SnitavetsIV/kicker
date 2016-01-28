@@ -19,7 +19,7 @@ public class KickerDataManager {
 
     private final DBHelper dbHelper;
 
-    private static final String ALL_USERS = "SELECT " + User.ID + "," + User.NAME + " FROM " + User.TABLE;
+    private static final String ALL_USERS = "SELECT " + User.ID + "," + User.NAME + " FROM " + User.TABLE + " WHERE " + User.DELETED + "=0";
     private static final String ALL_GAMES = "SELECT " +
             "g." + Game.ID + "," +
             "blueAttack." + User.ID + "," + "blueAttack." + User.NAME + "," +
@@ -175,15 +175,6 @@ public class KickerDataManager {
         return ret;
     }
 
-    public void deleteUser(User user) {
-        if (user == null) {
-            return;
-        }
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int ret = db.delete(User.TABLE, User.ID + "=?", new String[]{String.valueOf(user.getId())});
-        db.close();
-    }
-
     public void insertOrUpdateUser(User user) {
         if (user == null) {
             return;
@@ -191,6 +182,7 @@ public class KickerDataManager {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(User.NAME, user.getName());
+        cv.put(User.DELETED, user.isDeleted());
         if (user.getId() > 0) {
             db.update(User.TABLE, cv, "id = ?", new String[]{String.valueOf(user.getId())});
         } else {
