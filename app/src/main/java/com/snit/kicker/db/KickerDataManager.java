@@ -175,4 +175,28 @@ public class KickerDataManager {
         return ret;
     }
 
+    public void deleteUser(User user) {
+        if (user == null) {
+            return;
+        }
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int ret = db.delete(User.TABLE, User.ID + "=?", new String[]{String.valueOf(user.getId())});
+        db.close();
+    }
+
+    public void insertOrUpdateUser(User user) {
+        if (user == null) {
+            return;
+        }
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(User.NAME, user.getName());
+        if (user.getId() > 0) {
+            db.update(User.TABLE, cv, "id = ?", new String[]{String.valueOf(user.getId())});
+        } else {
+            int id = (int) db.insert(User.TABLE, null, cv);
+            user.setId(id);
+        }
+        db.close();
+    }
 }

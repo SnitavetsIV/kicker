@@ -21,7 +21,7 @@ import java.util.List;
 public class GameStatAdapter extends BaseAdapter {
 
     private List<Game> games;
-    KickerDataManager kickerDataManager;
+    private KickerDataManager kickerDataManager;
     private LayoutInflater layoutInflater;
 
     public GameStatAdapter(Context context, List<Game> listData, KickerDataManager kickerDataManager) {

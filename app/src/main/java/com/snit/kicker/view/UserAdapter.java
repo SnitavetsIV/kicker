@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.snit.kicker.R;
+import com.snit.kicker.db.KickerDataManager;
 import com.snit.kicker.entity.User;
 
 import java.util.List;
@@ -21,10 +23,12 @@ public class UserAdapter extends ArrayAdapter<User> {
 
     private List<User> items;
     private int layoutResourceId;
+    private KickerDataManager kickerDataManager;
     private Context context;
 
-    public UserAdapter(Context context, int layoutResourceId, List<User> items) {
+    public UserAdapter(Context context, int layoutResourceId, List<User> items, KickerDataManager kickerDataManager) {
         super(context, layoutResourceId, items);
+        this.kickerDataManager = kickerDataManager;
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.items = items;
@@ -42,7 +46,9 @@ public class UserAdapter extends ArrayAdapter<User> {
         holder.removePaymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                items.remove((User) v.getTag());
+                User user = (User) v.getTag();
+                kickerDataManager.deleteUser(user);
+                items.remove(user);
                 notifyDataSetChanged();
             }
         });

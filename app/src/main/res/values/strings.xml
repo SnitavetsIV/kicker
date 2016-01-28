@@ -10,6 +10,9 @@
     <string name="totalScore">TOTAL SCORE</string>
     <string name="saveGame">SAVE GAME</string>
     <string name="removeButton">remove</string>
+    <string name="newUser">New User</string>
+    <string name="drawer_open">drawer_open</string>
+    <string name="drawer_close">drawer_close</string>
 
     <string-array name="screen_array">
         <item>New Game</item>
